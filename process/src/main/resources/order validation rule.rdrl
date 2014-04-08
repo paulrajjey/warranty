@@ -1,0 +1,13 @@
+import java.lang.Number;
+import com.squaretrade.domain.retail.Customer;
+
+rule "order validation rule"
+	dialect "mvel"
+	ruleflow-group "ordervalidation"
+	when
+		customer : Customer( city != "Madison" )
+	then
+		customer.setCity( "Madison" );
+		System.out.println("order validation rule fired");
+		System.out.println("order validation rule fired outcome " + customer.toString());
+end

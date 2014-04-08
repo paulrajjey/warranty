@@ -1,0 +1,14 @@
+import java.lang.Number;
+import com.squaretrade.domain.retail.Order;
+import com.squaretrade.domain.retail.Item;
+
+rule "item validation rule"
+	dialect "mvel"
+	ruleflow-group "validateItem"
+	when
+		order : Order( )
+		java.util.List( ) from collect ( 		Item( type == "CONSELEC" ) from order
+) 
+	then
+		System.out.println("consumer electronics item sholud be more than one");
+end
